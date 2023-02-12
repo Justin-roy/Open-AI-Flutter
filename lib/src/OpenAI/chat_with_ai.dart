@@ -28,54 +28,60 @@ class _ChatWithAIState extends State<ChatWithAI> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: _userText.length,
-            itemBuilder: (context, index) {
-              return Column(
-                crossAxisAlignment: index % 2 == 0
-                    ? CrossAxisAlignment.start
-                    : CrossAxisAlignment.end,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.all(8),
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: index % 2 == 0 ? Colors.green : Colors.amber,
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    child: Text(
-                      index % 2 == 0
-                          ? (_roboText.isEmpty)
-                              ? '...'
-                              : _roboText[index]
-                          : _userText[index],
-                      style: GoogleFonts.gabriela(
-                        color: Colors.black,
-                      ),
-                      textAlign: TextAlign.end,
-                    ),
-                  ),
-                ],
-              );
-            }),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: _userText.length,
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: index % 2 == 0
+                          ? CrossAxisAlignment.start
+                          : CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: index % 2 == 0 ? Colors.green : Colors.amber,
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Text(
+                            index % 2 == 0
+                                ? (_roboText.isEmpty)
+                                    ? '...'
+                                    : _roboText[index]
+                                : _userText[index],
+                            style: GoogleFonts.gabriela(
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
+            ),
+            TextFieldInput(
+              onpress: () async {
+                setState(() {
+                  _userText.add(_text.text);
+                });
+                aiAnswer = await ApiCallAI.getRoboResponse(message: _text.text);
+                setState(() {
+                  _roboText.add(aiAnswer[0].text);
+                  _text.clear();
+                });
+              },
+              textEditingController: _text,
+              hintText: 'Type something here ..',
+              textInputType: TextInputType.name,
+            ),
+          ],
+        ),
       ),
-      bottomNavigationBar: TextFieldInput(
-        onpress: () async {
-          setState(() {
-            _userText.add(_text.text);
-          });
-          aiAnswer = await ApiCallAI.getRoboResponse(message: _text.text);
-          setState(() {
-            _roboText.add(aiAnswer[0].text);
-            _text.clear();
-          });
-        },
-        textEditingController: _text,
-        hintText: 'hintText',
-        textInputType: TextInputType.name,
-      ),
+      // bottomNavigationBar:
     );
   }
 }

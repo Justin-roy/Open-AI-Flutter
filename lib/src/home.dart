@@ -32,10 +32,15 @@ class HomePage extends StatelessWidget {
             ),
             child: Container(
               padding: const EdgeInsets.all(8),
-              color: Colors.teal[100],
-              child: Text(
-                "Talk With AI",
-                style: GoogleFonts.gabriela(fontSize: 18),
+              decoration: BoxDecoration(
+                color: Colors.teal[100],
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Center(
+                child: Text(
+                  "Talk With AI",
+                  style: GoogleFonts.gabriela(fontSize: 18),
+                ),
               ),
             ),
           ),
@@ -48,10 +53,15 @@ class HomePage extends StatelessWidget {
             ),
             child: Container(
               padding: const EdgeInsets.all(8),
-              color: Colors.teal[200],
-              child: Text(
-                'Chat With AI',
-                style: GoogleFonts.gabriela(fontSize: 18),
+              decoration: BoxDecoration(
+                color: Colors.teal[200],
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Center(
+                child: Text(
+                  'Chat With AI',
+                  style: GoogleFonts.gabriela(fontSize: 18),
+                ),
               ),
             ),
           ),
@@ -64,10 +74,15 @@ class HomePage extends StatelessWidget {
             ),
             child: Container(
               padding: const EdgeInsets.all(8),
-              color: Colors.teal[100],
-              child: Text(
-                "Text To Image",
-                style: GoogleFonts.gabriela(fontSize: 18),
+              decoration: BoxDecoration(
+                color: Colors.teal[400],
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Center(
+                child: Text(
+                  "Text To Image",
+                  style: GoogleFonts.gabriela(fontSize: 18),
+                ),
               ),
             ),
           ),

@@ -1,10 +1,3 @@
-import 'dart:convert';
-
-OpenAiModel openAiModelFromJson(String str) =>
-    OpenAiModel.fromJson(json.decode(str));
-
-String openAiModelToJson(OpenAiModel data) => json.encode(data.toJson());
-
 class OpenAiModel {
   OpenAiModel({
     required this.id,

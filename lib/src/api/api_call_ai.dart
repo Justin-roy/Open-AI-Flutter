@@ -2,11 +2,12 @@ import 'dart:convert';
 import 'package:chat_bot/src/model/open_ai_model.dart';
 import 'package:http/http.dart' as http;
 
+const _key = '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';
+
 class ApiCallAI {
   static Future<List<Choice>> getRoboResponse({required String message}) async {
     var headers = {
-      'Authorization':
-          'Bearer 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',
+      'Authorization': 'Bearer $_key',
       'Content-Type': 'application/json'
     };
     var request = http.Request(
@@ -32,8 +33,7 @@ class ApiCallAI {
   static Future<String> getRoboResponseImage({required String message}) async {
     String imageUrl = '';
     var headers = {
-      'Authorization':
-          'Bearer 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',
+      'Authorization': 'Bearer $_key',
       'Content-Type': 'application/json'
     };
     var request = http.Request(
